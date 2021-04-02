@@ -1,5 +1,5 @@
 <div align="center">
-# Bash Clock
+    <h1>Bash Clock</h1>
 </div>
 
 ## How to use
