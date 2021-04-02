@@ -20,7 +20,7 @@ void destroyScreen(Screen *screen) {
 
 /* Calls a script that updates the dimensions of the screen */
 void updateDimensions() {
-        system("./screen.sh");
+        system("bash screen.sh");
 }
 
 /* Grabs the dimensions of the screen from the dimensions file */
