@@ -8,8 +8,7 @@
 /* Initializes the Screen struct */
 Screen* screenInit() {
         Screen* screen;
-        if (!(access("./dimensions", F_OK) + access("./screen.sh", F_OK))) 
-            screen = malloc(sizeof(screen));
+        screen = malloc(sizeof(screen));
         return screen;
 }
 
@@ -24,12 +23,38 @@ void updateDimensions() {
 }
 
 /* Grabs the dimensions of the screen from the dimensions file */
-void getDimensions(Screen* screen, char *filename) {
+void getDimensions(Screen* screen) {
         FILE *fp;
+	char path[1035];
+	int width = -1, height = -1;
 
-        fp = fopen(filename, "r");
-        fscanf(fp, "%d\n%d", &screen->S_HEIGHT, &screen->S_WIDTH);
-        fclose(fp);
+        /* Run commands to get screen dimensions and capture output */
+        fp = popen("/bin/tput lines && /bin/tput cols", "r");
+        if (fp == NULL) {
+            printf("ERROR: failed to determine screen dimensions\n");
+            exit(1);
+        }
+
+        /* Read screen height */
+            if(fgets(path, sizeof(path), fp) != NULL) {
+            height = atoi(path);
+            screen->S_HEIGHT = height;
+        } else {
+            printf("ERROR: lines could not be fetched\n");
+            exit(1);
+        }
+
+        /* Read screen width */
+        if(fgets(path, sizeof(path), fp) != NULL) {
+            width = atoi(path);
+            screen->S_WIDTH = width;
+        } else {
+            printf("ERROR: columns could not be fetched\n");
+            exit(1);
+        }
+        
+        /* Close */
+       	pclose(fp);
 }
 
 /* Prints spaces that look like a void background */

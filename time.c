@@ -32,7 +32,7 @@ int main() {
         if (screen) {
             /* Initialize Global Variables */   
             updateDimensions();
-            getDimensions(screen, "dimensions");
+            getDimensions(screen);
             SCREENCHANGE = 0;
 
             signal(SIGWINCH, handle_sigch);
@@ -68,7 +68,7 @@ int main() {
 /* Function that will update the screen dimensions */
 void handle_sigch() {
         updateDimensions();
-        getDimensions(screen, "dimensions");
+        getDimensions(screen);
         SCREENCHANGE = 1;
 }
 

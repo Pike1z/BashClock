@@ -125,7 +125,8 @@ typedef int* PMap;
 Screen* screenInit();
 void destroyScreen(Screen *screen);
 void updateDimensions();
-void getDimensions(Screen* screen, char *filename);
+//void getDimensions(Screen* screen, char *filename);
+void getDimensions(Screen* screen);
 void printVoid();
 void printPixel();
 
