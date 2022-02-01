@@ -36,7 +36,7 @@ void getDimensions(Screen* screen) {
         }
 
         /* Read screen height */
-            if(fgets(path, sizeof(path), fp) != NULL) {
+        if(fgets(path, sizeof(path), fp) != NULL) {
             height = atoi(path);
             screen->S_HEIGHT = height;
         } else {
