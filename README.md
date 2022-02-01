@@ -3,5 +3,5 @@
 </div>
 
 ## How to use
-*Soon to be added instructions*
+This program allows you to display the current time in your terminal session. You can use it as a screensaver or as a rudimentary clock.
 
